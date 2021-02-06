@@ -19,10 +19,21 @@ repositories {
 }
 
 dependencies {
+	// starter
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter'
+
+	// lombok
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
+
+	// test
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+	// Database
+	compile("org.springframework.boot:spring-boot-starter-data-jpa")
+	runtimeOnly 'mysql:mysql-connector-java'
+	testImplementation 'com.h2database:h2'
 }
 
 test {

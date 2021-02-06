@@ -1,0 +1,32 @@
+package com.example.ddangui.payload.response;
+
+import com.example.ddangui.entity.type.enums.Types;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.time.LocalDateTime;
+import java.util.List;
+
+@Getter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class BoardContentResponse {
+
+    private Long id;
+
+    private String title;
+
+    private String content;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd`T`hh:mm:SS")
+    private LocalDateTime createdAt;
+
+    private List<Types> types;
+
+    private String userName;
+
+}
