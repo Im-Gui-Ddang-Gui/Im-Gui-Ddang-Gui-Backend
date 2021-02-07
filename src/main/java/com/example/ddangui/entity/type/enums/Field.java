@@ -1,6 +1,6 @@
 package com.example.ddangui.entity.type.enums;
 
-public enum Types {
+public enum Field {
     ADVERTISE,
     HUMOR,
     QUESTION,

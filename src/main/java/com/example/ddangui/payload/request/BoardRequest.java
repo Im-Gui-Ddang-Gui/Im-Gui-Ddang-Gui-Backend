@@ -2,9 +2,8 @@ package com.example.ddangui.payload.request;
 
 import com.example.ddangui.entity.board.Board;
 import com.example.ddangui.entity.type.Type;
-import com.example.ddangui.entity.type.enums.Types;
+import com.example.ddangui.entity.type.enums.Field;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -20,7 +19,7 @@ public class BoardRequest {
 
     private String content;
 
-    private List<Types> types;
+    private List<Field> fields;
 
     private String userName;
 
@@ -33,7 +32,7 @@ public class BoardRequest {
                 .content(boardRequest.getContent())
                 .title(boardRequest.getTitle())
                 .userName(boardRequest.getUserName())
-                .type(Type.builder().types(boardRequest.getTypes()))
+                .type(null)
                 .build();
     }
 

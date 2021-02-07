@@ -3,12 +3,14 @@ package com.example.ddangui.service.board;
 import com.example.ddangui.entity.board.Board;
 import com.example.ddangui.entity.board.BoardRepository;
 import com.example.ddangui.entity.type.Type;
-import com.example.ddangui.entity.type.enums.Types;
+import com.example.ddangui.entity.type.TypeRepository;
+import com.example.ddangui.entity.type.enums.Field;
 import com.example.ddangui.payload.request.BoardRequest;
 import com.example.ddangui.payload.response.BoardContentResponse;
 import com.example.ddangui.payload.response.BoardListResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -21,42 +23,56 @@ import java.util.List;
 public class BoardServiceImpl implements BoardService {
 
     private final BoardRepository boardRepository;
+    private final TypeRepository typeRepository;
 
     @Override
-    public BoardListResponse getBoard() {
-        Page<Board> boards = boardRepository.findAllByIsAcceptedTrue();
+    public BoardListResponse getBoard(Pageable page) {
+        Page<Board> boards = boardRepository.findAllByIsAcceptedTrue(page);
         return getBoardListResponse(boards);
     }
 
     @Override
-    public BoardListResponse getFilterBoard(Types types) {
-        Page<Board> boards = boardRepository.findAllByIsAcceptedTrueAndType(types);
+    public BoardListResponse getFilterBoard(Field field) {
+        Page<Board> boards = boardRepository.findAllByIsAcceptedTrueAndType(field);
         return getBoardListResponse(boards);
     }
 
     @Override
     public Long createBoard(BoardRequest request) {
 
-        boardRepository.save(
+        Board board = boardRepository.save(
                 Board.builder()
                         .content(request.getContent())
                         .files(null)
                         .createdAt(LocalDateTime.now(ZoneId.of("Asia/Seoul")))
                         .isAccepted(false)
                         .reports(null)
-                        .type(request.getTypes())
+                        .type(null)
+                        .userName(request.getUserName())
+                        .title(request.getTitle())
                         .build()
-        )
+        );
+
+        for(Field field : request.getFields()) {
+            typeRepository.save(
+                    Type.builder()
+                            .board(board)
+                            .field(field)
+                            .build()
+            );
+        }
+
+        return board.getId();
     }
 
 
     private BoardListResponse getBoardListResponse(Page<Board> boards) {
         List<BoardContentResponse> response = new ArrayList<>();
-        List<Types> type = new ArrayList<>();
+        List<Field> fields = new ArrayList<>();
 
         for(Board board : boards) {
-            for(Type type1 : board.getType()) {
-                type.add(type1.getTypes());
+            for(Type type : board.getType()) {
+                fields.add(type.getField());
             }
 
             response.add(
@@ -66,7 +82,7 @@ public class BoardServiceImpl implements BoardService {
                             .userName(board.getUserName())
                             .id(board.getId())
                             .title(board.getTitle())
-                            .types(type)
+                            .fields(fields)
                             .build()
             );
         }

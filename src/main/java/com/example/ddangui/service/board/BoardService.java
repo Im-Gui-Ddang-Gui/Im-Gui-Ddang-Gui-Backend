@@ -1,13 +1,14 @@
 package com.example.ddangui.service.board;
 
-import com.example.ddangui.entity.type.enums.Types;
+import com.example.ddangui.entity.type.enums.Field;
 import com.example.ddangui.payload.request.BoardRequest;
 import com.example.ddangui.payload.response.BoardListResponse;
+import org.springframework.data.domain.Pageable;
 
 public interface BoardService {
-    BoardListResponse getBoard();
+    BoardListResponse getBoard(Pageable page);
 
-    BoardListResponse getFilterBoard(Types types);
+    BoardListResponse getFilterBoard(Field field);
 
     Long createBoard(BoardRequest request);
 

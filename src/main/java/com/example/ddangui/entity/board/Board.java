@@ -1,5 +1,6 @@
 package com.example.ddangui.entity.board;
 
+import com.example.ddangui.entity.comment.Comment;
 import com.example.ddangui.entity.file.File;
 import com.example.ddangui.entity.report.Report;
 import com.example.ddangui.entity.type.Type;
@@ -48,5 +49,9 @@ public class Board {
     @OneToMany
     @JsonBackReference
     private List<Report> reports;
+
+    @OneToMany
+    @JsonBackReference
+    private List<Comment> comments;
 
 }
