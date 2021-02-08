@@ -1,0 +1,13 @@
+spring:
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 100MB
+      max-request-size: 105MB
+      location: C:/Temp
+  datasource:
+    username: root
+    password: root
+    url: jd
+file:
+  upload-dir: /uploads
