@@ -13,6 +13,6 @@ public interface BoardRepository extends CrudRepository<Board, Long> {
     Page<Board> findAllByIsAcceptedTrue(Pageable page);
 
     @Query("SELECT a FROM Board a INNER JOIN Type b WHERE a = b.board AND a.isAccepted = TRUE AND b.field = ?1")
-    Page<Board> findAllByIsAcceptedTrueAndType(Field field);
+    Page<Board> findAllByIsAcceptedTrueAndType(Field field, Pageable page);
 
 }

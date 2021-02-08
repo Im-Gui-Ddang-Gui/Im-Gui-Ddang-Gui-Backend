@@ -32,8 +32,8 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public BoardListResponse getFilterBoard(Field field) {
-        Page<Board> boards = boardRepository.findAllByIsAcceptedTrueAndType(field);
+    public BoardListResponse getFilterBoard(Field field, Pageable page) {
+        Page<Board> boards = boardRepository.findAllByIsAcceptedTrueAndType(field, page);
         return getBoardListResponse(boards);
     }
 

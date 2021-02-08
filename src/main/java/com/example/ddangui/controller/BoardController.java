@@ -21,8 +21,9 @@ public class BoardController {
     }
 
     @GetMapping("/{field}")
-    public BoardListResponse getFilterBoard(@PathVariable Field field) {
-        return boardService.getFilterBoard(field);
+    public BoardListResponse getFilterBoard(@PathVariable Field field,
+                                            Pageable page) {
+        return boardService.getFilterBoard(field, page);
     }
 
     @PostMapping

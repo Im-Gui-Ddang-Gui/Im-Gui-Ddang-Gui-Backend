@@ -8,7 +8,7 @@ import org.springframework.data.domain.Pageable;
 public interface BoardService {
     BoardListResponse getBoard(Pageable page);
 
-    BoardListResponse getFilterBoard(Field field);
+    BoardListResponse getFilterBoard(Field field, Pageable page);
 
     Long createBoard(BoardRequest request);
 
