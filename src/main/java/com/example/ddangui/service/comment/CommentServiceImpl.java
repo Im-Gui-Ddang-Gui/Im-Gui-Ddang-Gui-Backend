@@ -5,6 +5,7 @@ import com.example.ddangui.entity.board.BoardRepository;
 import com.example.ddangui.entity.comment.Comment;
 import com.example.ddangui.entity.comment.CommentRepository;
 import com.example.ddangui.exception.BoardNotFoundException;
+import com.example.ddangui.payload.request.CommentRequest;
 import com.example.ddangui.payload.response.CommentContentResponse;
 import com.example.ddangui.payload.response.CommentListResponse;
 import lombok.RequiredArgsConstructor;
@@ -47,6 +48,16 @@ public class CommentServiceImpl implements CommentService {
                 .totalElements((int)comments.getTotalElements())
                 .totalPages(comments.getTotalPages())
                 .build();
+
+    }
+
+    @Override
+    public void createComment(Long boardId, CommentRequest commentRequest) {
+
+        Board board = boardRepository.findById(boardId)
+                .orElseThrow(BoardNotFoundException::new);
+
+        commentRepository.save(commentRequest.toEntity(board));
 
     }
 

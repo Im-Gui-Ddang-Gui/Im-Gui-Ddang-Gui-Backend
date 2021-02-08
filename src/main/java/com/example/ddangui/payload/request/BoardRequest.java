@@ -23,15 +23,15 @@ public class BoardRequest {
 
     private String userName;
 
-    public Board toEntity(BoardRequest boardRequest) {
+    public Board toEntity() {
         return Board.builder()
                 .reports(null)
                 .isAccepted(false)
                 .createdAt(LocalDateTime.now())
                 .files(null)
-                .content(boardRequest.getContent())
-                .title(boardRequest.getTitle())
-                .userName(boardRequest.getUserName())
+                .content(content)
+                .title(title)
+                .userName(userName)
                 .type(null)
                 .build();
     }

@@ -40,18 +40,7 @@ public class BoardServiceImpl implements BoardService {
     @Override
     public Long createBoard(BoardRequest request) {
 
-        Board board = boardRepository.save(
-                Board.builder()
-                        .content(request.getContent())
-                        .files(null)
-                        .createdAt(LocalDateTime.now(ZoneId.of("Asia/Seoul")))
-                        .isAccepted(false)
-                        .reports(null)
-                        .type(null)
-                        .userName(request.getUserName())
-                        .title(request.getTitle())
-                        .build()
-        );
+        Board board = boardRepository.save(request.toEntity());
 
         for(Field field : request.getFields()) {
             typeRepository.save(
