@@ -34,6 +34,6 @@ public class ReportServiceImpl implements ReportService {
                         .board(board)
                         .build()
         );
-        
+
     }
 }
