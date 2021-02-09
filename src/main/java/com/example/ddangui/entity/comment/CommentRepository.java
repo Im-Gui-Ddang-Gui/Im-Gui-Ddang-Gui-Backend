@@ -11,4 +11,6 @@ public interface CommentRepository extends CrudRepository<Comment, Long> {
 
     Page<Comment> findAllByBoard(Board board, Pageable page);
 
+    void deleteAllByBoard(Board board);
+
 }

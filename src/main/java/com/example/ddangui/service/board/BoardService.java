@@ -12,4 +12,6 @@ public interface BoardService {
 
     Long createBoard(BoardRequest request);
 
+    void deleteBoard(Long boardId);
+
 }

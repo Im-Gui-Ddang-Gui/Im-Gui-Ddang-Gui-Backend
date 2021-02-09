@@ -2,12 +2,19 @@ package com.example.ddangui.service.board;
 
 import com.example.ddangui.entity.board.Board;
 import com.example.ddangui.entity.board.BoardRepository;
+import com.example.ddangui.entity.comment.CommentRepository;
+import com.example.ddangui.entity.file.File;
+import com.example.ddangui.entity.file.FileRepository;
+import com.example.ddangui.entity.report.ReportRepository;
 import com.example.ddangui.entity.type.Type;
 import com.example.ddangui.entity.type.TypeRepository;
 import com.example.ddangui.entity.type.enums.Field;
+import com.example.ddangui.exception.BoardNotFoundException;
+import com.example.ddangui.exception.PermissionMismatchException;
 import com.example.ddangui.payload.request.BoardRequest;
 import com.example.ddangui.payload.response.BoardContentResponse;
 import com.example.ddangui.payload.response.BoardListResponse;
+import com.example.ddangui.security.auth.AuthenticationFacade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -22,8 +29,13 @@ import java.util.List;
 @RequiredArgsConstructor
 public class BoardServiceImpl implements BoardService {
 
+    private final AuthenticationFacade authenticationFacade;
+
     private final BoardRepository boardRepository;
     private final TypeRepository typeRepository;
+    private final ReportRepository reportRepository;
+    private final FileRepository fileRepository;
+    private final CommentRepository commentRepository;
 
     @Override
     public BoardListResponse getBoard(Pageable page) {
@@ -52,6 +64,26 @@ public class BoardServiceImpl implements BoardService {
         }
 
         return board.getId();
+    }
+
+    @Override
+    public void deleteBoard(Long boardId) {
+
+        if(!authenticationFacade.isLogin()) {
+            throw new PermissionMismatchException();
+        }
+        Board board = boardRepository.findById(boardId)
+                .orElseThrow(BoardNotFoundException::new);
+
+        reportRepository.deleteByBoard(board);
+
+        File file = fileRepository.findByBoard(board)
+                .orElseThrow(BoardNotFoundException::new);
+        // 파일삭제는 미래의 내가
+
+        commentRepository.deleteAllByBoard(board);
+        typeRepository.deleteAllByBoard(board);
+
     }
 
 
