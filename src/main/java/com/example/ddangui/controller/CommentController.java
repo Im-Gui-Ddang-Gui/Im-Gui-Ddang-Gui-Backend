@@ -14,7 +14,7 @@ public class CommentController {
 
     private final CommentService commentService;
 
-    @GetMapping
+    @GetMapping("/{boardId}")
     public CommentListResponse getComment(@PathVariable Long boardId,
                                           Pageable page) {
         return commentService.getCommentList(boardId, page);
