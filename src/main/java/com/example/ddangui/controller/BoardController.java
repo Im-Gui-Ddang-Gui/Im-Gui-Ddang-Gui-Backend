@@ -31,4 +31,9 @@ public class BoardController {
         return boardService.createBoard(boardRequest);
     }
 
+    @DeleteMapping("/{boardId}")
+    public void deleteBoard(@PathVariable Long boardId) {
+        boardService.deleteBoard(boardId);
+    }
+
 }

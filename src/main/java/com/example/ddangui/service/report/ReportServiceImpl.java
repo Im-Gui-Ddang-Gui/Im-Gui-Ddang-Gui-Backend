@@ -12,10 +12,9 @@ import com.example.ddangui.payload.response.ReportListResponse;
 import com.example.ddangui.security.auth.AuthenticationFacade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.security.core.Authentication;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.awt.print.Pageable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -61,7 +60,7 @@ public class ReportServiceImpl implements ReportService {
             throw new PermissionMismatchException();
         }
 
-        Page<Report> reportList = reportRepository.findAllBy(page);
+        Page<Report> reportList = reportRepository.findAll(page);
         List<ReportContentResponse> reportContentResponses = new ArrayList<>();
 
         for(Report report : reportList) {

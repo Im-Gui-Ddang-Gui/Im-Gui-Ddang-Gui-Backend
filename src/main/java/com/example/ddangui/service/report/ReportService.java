@@ -2,7 +2,7 @@ package com.example.ddangui.service.report;
 
 import com.example.ddangui.payload.response.ReportListResponse;
 
-import java.awt.print.Pageable;
+import org.springframework.data.domain.Pageable;
 
 public interface ReportService {
     void createReport(Long boardId);
