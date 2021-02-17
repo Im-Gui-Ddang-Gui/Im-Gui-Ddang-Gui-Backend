@@ -55,6 +55,8 @@ public class AdminServiceImpl implements AdminService {
         RefreshToken refreshToken = refreshTokenRepository.findByRefreshToken(receivedToken)
                 .orElseThrow(InvalidTokenException::new);
 
+        refreshTokenRepository.save(refreshToken.update(refreshExp));
+
         return new AccessTokenResponse(jwtTokenProvider.generateAccessToken(refreshToken.getId()));
     }
 
