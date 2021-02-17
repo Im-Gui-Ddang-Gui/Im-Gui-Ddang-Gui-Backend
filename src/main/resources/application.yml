@@ -1,4 +1,8 @@
 spring:
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
   servlet:
     multipart:
       enabled: true
