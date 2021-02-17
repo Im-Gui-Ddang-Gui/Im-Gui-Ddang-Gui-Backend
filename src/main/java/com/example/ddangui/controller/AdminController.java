@@ -5,10 +5,7 @@ import com.example.ddangui.payload.response.AccessTokenResponse;
 import com.example.ddangui.payload.response.TokenResponse;
 import com.example.ddangui.service.admin.AdminService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -18,7 +15,7 @@ public class AdminController {
     private final AdminService adminService;
 
     @PostMapping
-    public TokenResponse signIn(SignInRequest request) {
+    public TokenResponse signIn(@RequestBody SignInRequest request) {
         return adminService.signIn(request);
     }
 
