@@ -29,4 +29,5 @@ public class BoardContentResponse {
 
     private String userName;
 
+    private String path;
 }

@@ -104,7 +104,7 @@ public class BoardServiceImpl implements BoardService {
 
         for(Board board : boards) {
             fields = new ArrayList<>();
-            
+
             for(Type type : board.getType()) {
                 fields.add(type.getField());
             }
@@ -117,6 +117,7 @@ public class BoardServiceImpl implements BoardService {
                             .id(board.getId())
                             .title(board.getTitle())
                             .fields(fields)
+                            .path(board.getFiles().getPath())
                             .build()
             );
         }

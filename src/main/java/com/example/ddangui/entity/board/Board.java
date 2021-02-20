@@ -42,9 +42,9 @@ public class Board {
     @JsonBackReference
     private List<Type> type;
 
-    @OneToMany(mappedBy = "board")
+    @OneToOne(mappedBy = "board")
     @JsonBackReference
-    private List<File> files;
+    private File files;
 
     @OneToMany(mappedBy = "board")
     @JsonBackReference

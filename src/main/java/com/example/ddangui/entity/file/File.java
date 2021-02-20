@@ -24,7 +24,7 @@ public class File {
 
     private String path;
 
-    @ManyToOne
+    @OneToOne
     @JsonManagedReference
     @JoinColumn(name = "boardId")
     private Board board;
