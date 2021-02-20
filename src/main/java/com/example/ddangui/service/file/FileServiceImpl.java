@@ -27,7 +27,7 @@ public class FileServiceImpl implements FileService {
         Board board = boardRepository.findById(boardId)
                 .orElseThrow(BoardNotFoundException::new);
 
-        File dest = new File("C:/image/" + UUID.randomUUID() + fileName);
+        File dest = new File("/home/hong/files/ddangui/" + UUID.randomUUID() + fileName);
         file.transferTo(dest);
 
         fileRepository.save(
