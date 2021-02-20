@@ -38,19 +38,19 @@ public class Board {
     @DateTimeFormat(pattern = "yyyy-MM-dd`T`hh:mm:SS")
     private LocalDateTime createdAt;
 
-    @OneToMany
+    @OneToMany(mappedBy = "board")
     @JsonBackReference
     private List<Type> type;
 
-    @OneToMany
+    @OneToMany(mappedBy = "board")
     @JsonBackReference
     private List<File> files;
 
-    @OneToMany
+    @OneToMany(mappedBy = "board")
     @JsonBackReference
     private List<Report> reports;
 
-    @OneToMany
+    @OneToMany(mappedBy = "board")
     @JsonBackReference
     private List<Comment> comments;
 
