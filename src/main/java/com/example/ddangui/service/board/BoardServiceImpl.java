@@ -100,9 +100,11 @@ public class BoardServiceImpl implements BoardService {
 
     private BoardListResponse getBoardListResponse(Page<Board> boards) {
         List<BoardContentResponse> response = new ArrayList<>();
-        List<Field> fields = new ArrayList<>();
+        List<Field> fields;
 
         for(Board board : boards) {
+            fields = new ArrayList<>();
+            
             for(Type type : board.getType()) {
                 fields.add(type.getField());
             }
