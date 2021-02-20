@@ -86,6 +86,17 @@ public class BoardServiceImpl implements BoardService {
 
     }
 
+    @Override
+    public void acceptBoard(Long boardId) {
+        if(!authenticationFacade.isLogin()) {
+            throw new PermissionMismatchException();
+        }
+
+        boardRepository.findById(boardId)
+                .map(board -> boardRepository.save(board.accept()))
+                .orElseThrow(BoardNotFoundException::new);
+    }
+
 
     private BoardListResponse getBoardListResponse(Page<Board> boards) {
         List<BoardContentResponse> response = new ArrayList<>();

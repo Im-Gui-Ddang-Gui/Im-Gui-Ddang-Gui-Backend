@@ -54,4 +54,9 @@ public class Board {
     @JsonBackReference
     private List<Comment> comments;
 
+    public Board accept() {
+        this.isAccepted = true;
+        return this;
+    }
+
 }

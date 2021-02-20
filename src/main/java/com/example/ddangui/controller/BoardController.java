@@ -36,4 +36,9 @@ public class BoardController {
         boardService.deleteBoard(boardId);
     }
 
+    @PatchMapping("/{boardId}")
+    public void acceptBoard(@PathVariable Long boardId) {
+        boardService.acceptBoard(boardId);
+    }
+
 }
