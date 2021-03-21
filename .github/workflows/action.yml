@@ -1,0 +1,33 @@
+name: Test    # name of this workflow
+on:           # required type. defining when we start jobs It works with following syntax
+# on : [push,pull_request] it works on any pull request and push.
+  push:
+    # if we don't set the branch when we start the jobs, github action do their jobs in any push. so, we can set the ignore with following syntax
+    # branches-ignore:
+    #   - hotfix/board
+    # if you want to do job every 15 minutes, we can use follwing syntax
+    # on:
+    #   schedule:
+    #     - cron: '*/15 * * * *'
+    # we can ignore file when workflow running.
+    # paths-ignore:
+    # - src/**      if you want to not ignore file, you can use ! keyword like !src/resources/application.yml
+    branches:
+      - master
+      - develop
+      - board     # if you want to do jobs on the branches starting with 'release/', you can use like this - release/**
+  pull_request:
+    branches:
+      - master
+      - develop
+env:
+  EXAMPLE: example  # it means the environment variables. it works on every workflows
+
+defaults:   # commands belong to defaults are works on every workflows
+  run:
+    shell: bash   # we only can use bash
+    working-directory: scripts
+
+jobs:         # starting of job config
+  build:      # name of
+    name:
