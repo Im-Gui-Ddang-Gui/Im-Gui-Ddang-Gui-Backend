@@ -11,8 +11,8 @@ spring:
       max-request-size: 105MB
       location: ./files
   datasource:
-    username: root
-    password: ${DB_PASSWORD}
+    username: outuser
+    password: password
     url: jdbc:mysql://localhost:3306/ddangui?serverTimezone=UTC&characterEncoding=UTF-8
   redis:
     host: localhost
@@ -27,3 +27,5 @@ auth:
     exp:
       refresh: ${REFRESH_TOKEN_EXP}
       access: ${ACCESS_TOKEN_EXP}
+server:
+  port: 8081

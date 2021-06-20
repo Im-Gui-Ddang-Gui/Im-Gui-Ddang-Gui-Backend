@@ -5,7 +5,7 @@ on:           # required type. defining when we start jobs It works with followi
     # if we don't set the branch when we start the jobs, github action do their jobs in any push. so, we can set the ignore with following syntax
     # branches-ignore:
     #   - hotfix/board
-    # if you want to do job every 15 minutes, we can use following syntax
+    # if you want to do job every 15 minutes, we can use follwing syntax
     # on:
     #   schedule:
     #     - cron: '*/15 * * * *'
@@ -26,8 +26,9 @@ env:
 defaults:   # commands belong to defaults are works on every workflows
   run:
     shell: bash   # we only can use bash
-    working-directory: scripts  # the shell in scripts directory will be run on any workflows
+    working-directory: scripts
 
+<<<<<<< HEAD
  workflows are made of one or more jobs.
  jobs are basically process in parallel
 jobs:
@@ -47,3 +48,8 @@ jobs:
     needs: test_job
     name: if test
     runs-on: ubuntu-20.04
+=======
+jobs:         # starting of job config
+  build:      # name of
+    name:
+>>>>>>> 72027e5b1c2fca1bfc301bbfdd9a4049ca775e61
