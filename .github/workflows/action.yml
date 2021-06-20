@@ -28,22 +28,22 @@ defaults:   # commands belong to defaults are works on every workflows
     shell: bash   # we only can use bash
     working-directory: scripts  # the shell in scripts directory will be run on any workflows
 
-# workflows are made of one or more jobs.
-# jobs are basically process in parallel
-#jobs:
-#  test_job:     # the name of job. each job must have an own id. ids are made from sneak method.
-#    name: job test  # the name will be shown in github.
-#    runs-on: ubuntu-20.04 # what operating system you want to run this job. this syntax is required.
-#  test_job_1:
-#    name: test
-#    runs-on: [self-hosted, linux] # if you want to run jobs on self-hosted runner you can use like this.
-#  test_job_2:
-#    needs: [test_job, test_job_1] # this job will be started after test_job and test_job_1 end successfully.
-#    name: needs test
-#    runs-on: ubuntu-20.04
-#  test_job_3:
-#    if: always()  # if you use this syntax, the job will be run after test_job.
-#    # but, the test_job_3 will be run Regardless of whether test_job's success or not.
-#    needs: test_job
-#    name: if test
-#    runs-on: ubuntu-20.04
+ workflows are made of one or more jobs.
+ jobs are basically process in parallel
+jobs:
+  test_job:     # the name of job. each job must have an own id. ids are made from sneak method.
+    name: job test  # the name will be shown in github.
+    runs-on: ubuntu-20.04 # what operating system you want to run this job. this syntax is required.
+  test_job_1:
+    name: test
+    runs-on: [self-hosted, linux] # if you want to run jobs on self-hosted runner you can use like this.
+  test_job_2:
+    needs: [test_job, test_job_1] # this job will be started after test_job and test_job_1 end successfully.
+    name: needs test
+    runs-on: ubuntu-20.04
+  test_job_3:
+    if: always()  # if you use this syntax, the job will be run after test_job.
+    # but, the test_job_3 will be run Regardless of whether test_job's success or not.
+    needs: test_job
+    name: if test
+    runs-on: ubuntu-20.04
